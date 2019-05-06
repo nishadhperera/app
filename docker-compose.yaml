@@ -14,9 +14,9 @@ services:
     env_file:
       - .env
     depends_on:
-      - postgres
+      - postgres_db
 
-  postgres:
+  postgres_db:
     image: postgres:9.4-alpine
     volumes:
       - pgdata:/var/lib/postgresql/data
