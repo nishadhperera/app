@@ -1,5 +1,6 @@
 version: "3"
 
+# List of the containers used in the application
 services:
   app:
     build:
@@ -7,6 +8,20 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app
+      - .:/app
     command: >
       sh -c "python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:9.4-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+volumes:
+  pgdata:
