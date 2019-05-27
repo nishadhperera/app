@@ -1,10 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'doctor/style.css' %}">
+
+<div id="doc_details" name="doc_details" class="data_container">
+
+    <h3 class="header_font"> {{  doctor_info.name  }} </h3>
+
+    <h4> Personal Information </h4>
+    <table>
+        <tr>
+            <td> Specialization: </td>
+            <td> {{  doctor_info.specialization  }} </td>
+        </tr>
+        <tr>
+            <td> Age: </td>
+            <td> {{  doctor_info.age  }} </td>
+        </tr>
+        <tr>
+            <td> Date of birth: </td>
+            <td> {{  doctor_info.date_of_birth  }} </td>
+        </tr>
+        <tr>
+            <td> E-mail: </td>
+            <td> {{  doctor_info.email  }} </td>
+        </tr>
+        <tr>
+            <td> Mobile number: </td>
+            <td> {{  doctor_info.mobile_number  }} </td>
+        </tr>
+        <tr>
+            <td> Address: </td>
+            <td> {{  doctor_info.address  }} </td>
+        </tr>
+    </table>
+
+
+</div>
+
+<div id="patient_details" name="patient_details" class="data_container">
+
+    <h4> Registered Patients </h4>
+
+        <table border="1" width="600">
+            <tr>
+            <td> Name </td>
+            <td> National ID </td>
+            <td> Age </td>
+            <td> Contact Number </td>
+            </tr>
+            {% for patient in patient_list %}
+            <tr>
+                <td><a href="/patient/{{patient.id}}/">{{ patient.name }}</a></td>
+                <td>{{ patient.nic }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.mobile_number }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+
+{% endblock %}
