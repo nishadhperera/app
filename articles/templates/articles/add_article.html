@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+  <h1>Add a new article</h1>
+  <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <div>
+          <input type="submit" value="Add">
+          <input type="reset">
+      </div>
+  </form>
+{% endblock %}

@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- loads the static files + bootstrap stylesheets -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'articles/style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Medical Management System</title>
 </head>
+
 <body>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
+        <div class="container-fluid">
+
+            <!-- Header -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'articles:welcome' %}">
+                    <img src="{% static 'articles/images/logo_2.png' %}" width="30" height="30">
+                    MMS
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+                        aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <!-- Items -->
+            <div class="navbar-collapse collapse" id="main-nav">
+                <ul class="nav navbar-nav ml-xl-5">
+                    <li class="nav-item"><a class="nav-link" href="/doctor/list">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/patient/list">Patients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Phamacies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/articles/list">Articles</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div id="content">
+        {% block content %}
+            <!-- All content in children goes here-->
+        {% endblock %}
+    </div>
 
 </body>
 </html>
