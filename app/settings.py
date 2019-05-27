@@ -31,14 +31,16 @@ ALLOWED_HOSTS = ['0.0.0.0']
 # Application definition
 
 INSTALLED_APPS = [
+    'articles.apps.ArticlesConfig',
+    'patient',
+    'doctor.apps.DoctorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
-    'articles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
