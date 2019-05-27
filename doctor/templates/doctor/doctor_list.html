@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>List of Doctors</h3>
+    <table border="1" width="800">
+    <tr>
+        <td width="100">Name</td>
+        <td width="150">Register ID</td>
+        <td width="300">Specialization</td>
+        <td width="150">Address</td>
+        <td width="150">Contact</td>
+    </tr>
+
+    {% for doctor in all_doctors %}
+    <tr>
+        <td><a href="/doctor/{{doctor.id}}/">{{ doctor.name }}</a></td>
+        <td>{{ doctor.reg_id }}</td>
+        <td>{{ doctor.specialization }}</td>
+        <td>{{ doctor.address }}</td>
+        <td>{{ doctor.mobile_number }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
