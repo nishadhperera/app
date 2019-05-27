@@ -1,0 +1,17 @@
+.data_container{
+    /*font-family: "Times New Roman", Times, serif;*/
+    padding: 25px 25px 25px 25px;
+}
+
+.header_font{
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+}
+
+.right_align {
+  float: right;
+}
+
+.left_align {
+  float: left;
+}

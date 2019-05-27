@@ -19,13 +19,24 @@ def list_doctors(request):
     return render(request, 'doctor/doctor_list.html', context)
 
 
+# def view_doctor(request, id):
+#     doctor = Doctor.objects.get(id=id)
+#     return HttpResponse(
+#         '<h2> ' + doctor.name + ' </h2>'
+#         '<h3> ' + doctor.specialization + '</h3>'
+#         '<body>' + doctor.address + '</body>'
+#     )
+
+
 def view_doctor(request, id):
     doctor = Doctor.objects.get(id=id)
-    return HttpResponse(
-        '<h2> ' + doctor.name + ' </h2>'
-        '<h3> ' + doctor.specialization + '</h3>'
-        '<body>' + doctor.address + '</body>'
-    )
+    patient_list = doctor.registered_patients.all()
+
+    context = {
+        'doctor_info': doctor,
+        'patient_list': patient_list,
+    }
+    return render(request, 'doctor/doctor_detail.html', context)
 
 
 class DoctorViewSet(viewsets.ModelViewSet):
