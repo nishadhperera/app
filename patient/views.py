@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework import viewsets
 
 from .models import Patient
+from .models import Doctor
+from .serializers import PatientSerializer
 
 
 def list_patients(request):
@@ -19,3 +22,8 @@ def view_patient(request, id):
         '<h3> ' + patient.mobile_number + '</h3>'
         '<body>' + patient.address + '</body>'
     )
+
+
+class PatientViewSet(viewsets.ModelViewSet):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
