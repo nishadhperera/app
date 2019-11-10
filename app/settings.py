@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'accounts'
+    'accounts',
+    'rest_framework_swagger',
+    'drf_yasg',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +56,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_FILTER_BACKENDS': (
+            'django_filters.rest_framework.DjangoFilterBackend',
+        ),
+}
 
 ROOT_URLCONF = 'app.urls'
 

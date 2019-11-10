@@ -15,11 +15,32 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import re_path
+
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="MMS Open API",
+      default_version='v1',
+      description="Interface to exchange MMS data",
+   ),
+   public=True,
+)
 
 urlpatterns = [
-    path('articles/', include('articles.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('doctor/', include('doctor.urls')),
-    path('patient/', include('patient.urls')),
-    path('admin/', admin.site.urls),
+    re_path(r'^articles/', include('articles.urls')),
+    re_path(r'^accounts/', include('accounts.urls')),
+    re_path(r'^doctor/', include('doctor.urls')),
+    re_path(r'^patient/', include('patient.urls')),
+    re_path(r'^admin/', admin.site.urls),
+
+    # API urls
+    re_path(r'^api/doctor/', include('doctor.api.urls')),
+    re_path(r'^api/patient/', include('patient.api.urls')),
+
+    re_path(r'^api/swagger(?P<format>\.json|\.yaml)/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    re_path(r'^api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
