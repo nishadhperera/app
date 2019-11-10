@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
+from django_filters import rest_framework as filters
 
 from .models import Doctor
 from .serializers import DoctorSerializer
@@ -42,11 +43,6 @@ def view_doctor(request, id):
 class DoctorViewSet(viewsets.ModelViewSet):
     queryset = Doctor.objects.all()
     serializer_class = DoctorSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_fields = ('reg_id', 'name')
 
-    # def get(self, request):
-    #     doctors = Doctor.objects.all()
-    #     serializer = DoctorSerializer(doctors, many=True)
-    #     return Response(serializer.data)
-    #
-    # def post(self):
-    #     pass
